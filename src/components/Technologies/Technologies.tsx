@@ -1,6 +1,8 @@
 import { Suspense, useState } from "react";
 import Technologie from "../Technologie/Technologie";
 import type { Technologiese } from "../../type/type";
+import { Slide, toast } from "react-toastify";
+import Loader from "../Loader/Loader";
 
 const fetchTechnologies = async (): Promise<Technologiese[]> => {
   const res = await fetch("/data.json");
@@ -20,19 +22,74 @@ export default function Technologies() {
 
       return [...prev, technology];
     });
+
+    toast.success(`${technology.name} Added successfully`, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+
+      style: {
+        background: "linear-gradient(135deg, #001F3F, #0066FF)",
+        color: "#FFFFFF",
+      },
+    });
   };
 
   const removeFromStack = (id: Technologiese["id"]) => {
     setStack((prev) => prev.filter((item) => item.id !== id));
+    toast.success(` Remove successfully`, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+
+      style: {
+        background: "linear-gradient(135deg, #001F3F, #0066FF)",
+        color: "#FFFFFF",
+      },
+    });
   };
 
   const allRemoveFromStack = () => {
     setStack([]);
+    toast.success(` Remove All successfully`, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+
+      style: {
+        background: "linear-gradient(135deg, #001F3F, #0066FF)",
+        color: "#FFFFFF",
+      },
+    });
   };
 
   return (
     <div>
-      <Suspense fallback={"loading......"}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center mb-80">
+            <Loader />
+          </div>
+        }
+      >
         <Technologie
           teachnologiesData={teachnologiesData}
           stack={stack}

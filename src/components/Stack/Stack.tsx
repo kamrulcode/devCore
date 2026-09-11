@@ -14,7 +14,7 @@ export default function Stack({
   removeFromStack,
 }: StackProps) {
   return (
-    <div className="rounded-md  bg-white p-6 shadow-middle ">
+    <div className="rounded-md  bg-white p-6 shadow-prime ">
       <div className="mb-4">
         <h2 className="mb-1 text-2xl font-semibold">Your Stack</h2>
         {stack.length === 0 ? (
@@ -44,7 +44,7 @@ export default function Stack({
           <button
             type="button"
             onClick={allRemoveFromStack}
-            className="rounded-lg border border-red-200 bg-white px-3 py-2 text-sm font-medium text-red-500 transition hover:bg-red-50"
+            className="w-full mt-6 rounded-lg border border-red-200 bg-white px-3 py-2 text-lg font-medium text-red-500 transition hover:bg-red-200"
           >
             Remove All
           </button>

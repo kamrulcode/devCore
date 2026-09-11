@@ -21,17 +21,16 @@ export default function Technologie({
   const technologies = use(teachnologiesData);
 
   return (
-    <div className="container mx-auto mb-32">
-      <h2 className="font-bold text-4xl leading-4 font-Jakarta ">
-        Explore the
-        <span className=" prime-gradient ">Technologies</span>
+    <div className="container mx-auto mb-32 w-[90%] ">
+      <h2 className="font-bold sm:text-4xl text-2xl leading-4 font-Jakarta  ">
+        Explore the <span className=" prime-gradient ">Technologies</span>
       </h2>
-      <p className="font-normal text-lg leading-6 font-Jakarta mb-14 mt-6">
+      <p className="font-normal sm:text-lg text-sm leading-6 font-Jakarta sm:mb-14 mb-8 sm:mt-6 mt-3 text-textPrime">
         Pick one technology per category to build your ideal stack.
       </p>
 
-      <div className="grid grid-cols-4 gap-8">
-        <div className="col-span-3 grid grid-cols-3 gap-6">
+      <div className="sm:grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8">
+        <div className="md:col-span-3 sm:col-span-2 sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {technologies.map((technologie) => (
             <TechnologiCard
               key={technologie.id}
