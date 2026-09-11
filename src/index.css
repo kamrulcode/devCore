@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  /* =================================
+     BRAND
+  ================================= */
+  --font-Jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-Inter: "Inter", sans-serif;
+
+  --color-prime: #f97316;
+  --color-prime-dark: #6d28d9;
+  --color-prime-light: #fff1e8;
+
+  --color-secs: #ec4899;
+  --color-secs-light: #ede9fe;
+
+  --color-acce: #7c3aed;
+  --color-acce-light: #fce7f3;
+
+  --shadow-small:
+    rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  --shadow-middle:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  --shadow-prime: 0 8px 24px rgba(124, 58, 237, 0.18);
+
+  /* =================================
+     BACKGROUND
+  ================================= */
+
+  --color-bg: #ffffff;
+  --color-bg-soft: #f8fafc;
+  --color-bg-muted: #f1f5f9;
+
+  --color-surface: #ffffff;
+  --color-surface-hover: #faf9ff;
+
+  /* =================================
+     TEXT
+  ================================= */
+
+  --color-text-primary: #172033;
+  --color-text-secondary: #526078;
+  --color-text-muted: #8a94a6;
+  --color-text-light: #a8b1c0;
+
+  --color-text-on-primary: #ffffff;
+
+  /* =================================
+     BORDERS
+  ================================= */
+
+  --color-border: #e5e7eb;
+  --color-border-light: #eef0f4;
+  --color-border-primary: #ddd6fe;
+
+  /* =================================
+     STATUS
+  ================================= */
+
+  --color-success: #16a34a;
+  --color-success-light: #dcfce7;
+
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+
+  /* =================================
+     RADIUS
+  ================================= */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+}

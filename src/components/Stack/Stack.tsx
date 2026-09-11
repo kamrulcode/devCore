@@ -1,0 +1,42 @@
+import { TbStackPush } from "react-icons/tb";
+import type { Technologiese } from "../../type/type";
+import StackCard from "./StackCard";
+
+interface StackProps {
+  stack: Technologiese[];
+  removeFromStack: (id: Technologiese["id"]) => void;
+}
+
+export default function Stack({ stack, removeFromStack }: StackProps) {
+  return (
+    <div className="rounded-md  bg-white p-6 shadow-middle ">
+      <div className="mb-4">
+        <h2 className="mb-1 text-2xl font-semibold">Your Stack</h2>
+        {stack.length === 0 ? (
+          <p className="text-gray-500">No Technology Selected yet.</p>
+        ) : (
+          <p className="text-gray-500">{`${stack.length} Technology Selected.`}</p>
+        )}
+      </div>
+
+      {stack.length === 0 ? (
+        <div className="flex flex-col items-center justify-center  min-h-56">
+          <TbStackPush className="w-8 h-8 text-gray-500" />
+          <p className="text-gray-500">Your Stack is empty.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {stack.map((technology) => (
+            <>
+              <StackCard
+                key={technology.id}
+                technology={technology}
+                removeFromStack={removeFromStack}
+              />
+            </>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
