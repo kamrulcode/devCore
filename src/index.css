@@ -11,14 +11,11 @@
   --font-Inter: "Inter", sans-serif;
 
   --color-prime: #f97316;
-  --color-prime-dark: #6d28d9;
-  --color-prime-light: #fff1e8;
 
+  --color-secs-light: #7c81e6;
   --color-secs: #ec4899;
-  --color-secs-light: #ede9fe;
 
   --color-acce: #7c3aed;
-  --color-acce-light: #fce7f3;
 
   --gradient-prime: linear-gradient(135deg, #f97316, #ec4899, #7c3aed);
 
@@ -63,14 +60,14 @@
      STATUS
   ================================= */
 
-  --color-success: #16a34a;
-  --color-success-light: #dcfce7;
+  --color-correct: #16a34a;
+  --color-correct-light: #dcfce7;
 
-  --color-warning: #f59e0b;
-  --color-warning-light: #fef3c7;
+  --color-check: #f59e0b;
+  --color-check-light: #fef3c7;
 
-  --color-danger: #ef4444;
-  --color-danger-light: #fee2e2;
+  --color-wrong: #ef4444;
+  --color-wrong-light: #fee2e2;
 }
 
 @utility prime-gradient {

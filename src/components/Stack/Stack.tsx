@@ -43,8 +43,8 @@ export default function Stack({
 
           <button
             type="button"
-            onClick={() => allRemoveFromStack()}
-            className="rounded-md px-3 py-2 text-lg font-semibold border w-full mt-16 text-red-500 hover:bg-red-200 "
+            onClick={allRemoveFromStack}
+            className="rounded-lg border border-red-200 bg-white px-3 py-2 text-sm font-medium text-red-500 transition hover:bg-red-50"
           >
             Remove All
           </button>

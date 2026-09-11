@@ -1,10 +1,14 @@
 import Logo from "../../assets/logo-text.png";
 import menu from "../../assets/hamburger.png";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [active, setActive] = useState("Home");
+
+  const menuItems = ["Home", "Technologies", "About", "Projects", "Contact"];
   return (
     <div className="container mx-auto sticky top-0 navbar bg-base-100 shadow-sm">
-      <div className="navbar-start md:w-1/2 w-5/6 md:justify-start justify-between">
+      <div className="navbar-start lg:w-1/2 w-5/6 lg:justify-start justify-between">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <img src={menu} alt="" />
@@ -35,31 +39,29 @@ export default function Navbar() {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className="bg-blue-600 text-white">
-            <a>Home</a>
-          </li>
-          <li>
-            <a>Technologies</a>
-          </li>
-          <li>
-            <a>Products</a>
-          </li>
-          <li>
-            <a>About</a>
-          </li>
-          <li>
-            <a>Contact</a>
-          </li>
+        <ul className="flex gap-6 text-lg ">
+          {menuItems.map((item) => (
+            <li
+              key={item}
+              onClick={() => setActive(item)}
+              className={`cursor-pointer px-4 py-2 rounded-lg ${
+                active === item
+                  ? " prime-gradient font-medium"
+                  : "text-gray-600 hover:text-secs-light "
+              }`}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
-      <div className="navbar-end  md:text-sm text-[9px]">
-        <a className="btn rounded-2xl text-sm font-medium text-gray-700 hover:text-black">
+      <div className="navbar-end ">
+        <button className="rounded-lg border border-violet-200 bg-white md:px-3 lg:px-5 px-2 py-2.5 font-medium text-violet-600 transition hover:bg-violet-50 md:text-lg text-sm">
           Sign In
-        </a>
-        <a className="btn  bg-linear-to-r from-prime via-secs to-acce text-white  rounded-lg px-5 py-2.5 text-sm font-medium transition hover:bg-gray-800">
+        </button>
+        <button className="rounded-lg bg-violet-600 md:px-3 lg:px-5 px-2 py-2.5 font-medium text-white transition hover:bg-violet-700 md:text-lg text-xs">
           Sign Up
-        </a>
+        </button>
       </div>
     </div>
   );

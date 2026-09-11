@@ -27,7 +27,7 @@ export default function StackCard({ technology, removeFromStack }: CardProps) {
       <button
         type="button"
         onClick={() => removeFromStack(technology.id)}
-        className="rounded-md px-3 py-2 text-sm text-red-500 hover:bg-red-50"
+        className="rounded-lg border border-violet-200 bg-white px-3 py-2 text-sm font-medium text-violet-600 transition hover:bg-violet-50"
       >
         Remove
       </button>

@@ -38,12 +38,13 @@ export default function TechnologiCard({
         </div>
       </div>
       <button
+        type="button"
         disabled={isAdded}
         onClick={() => addToStack(technologie)}
-        className={`w-full  text-xs font-medium leading-4 px-6 py-3 uppercase ${
+        className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
           isAdded
-            ? "cursor-not-allowed bg-gray-300 text-gray-500"
-            : "bg-acce text-white cursor-pointer "
+            ? "cursor-not-allowed bg-gray-200 text-gray-400"
+            : "bg-violet-600 text-white hover:bg-violet-700"
         }`}
       >
         {isAdded ? "Added to Stack" : "Add to Stack"}
