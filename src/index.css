@@ -20,6 +20,8 @@
   --color-acce: #7c3aed;
   --color-acce-light: #fce7f3;
 
+  --gradient-prime: linear-gradient(135deg, #f97316, #ec4899, #7c3aed);
+
   --shadow-small:
     rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   --shadow-middle:
@@ -69,13 +71,10 @@
 
   --color-danger: #ef4444;
   --color-danger-light: #fee2e2;
+}
 
-  /* =================================
-     RADIUS
-  ================================= */
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
+@utility prime-gradient {
+  background-image: var(--gradient-prime);
+  background-clip: text;
+  color: transparent;
 }

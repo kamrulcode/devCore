@@ -5,9 +5,14 @@ import StackCard from "./StackCard";
 interface StackProps {
   stack: Technologiese[];
   removeFromStack: (id: Technologiese["id"]) => void;
+  allRemoveFromStack: () => void;
 }
 
-export default function Stack({ stack, removeFromStack }: StackProps) {
+export default function Stack({
+  stack,
+  allRemoveFromStack,
+  removeFromStack,
+}: StackProps) {
   return (
     <div className="rounded-md  bg-white p-6 shadow-middle ">
       <div className="mb-4">
@@ -35,6 +40,14 @@ export default function Stack({ stack, removeFromStack }: StackProps) {
               />
             </>
           ))}
+
+          <button
+            type="button"
+            onClick={() => allRemoveFromStack()}
+            className="rounded-md px-3 py-2 text-lg font-semibold border w-full mt-16 text-red-500 hover:bg-red-200 "
+          >
+            Remove All
+          </button>
         </div>
       )}
     </div>

@@ -1,8 +1,7 @@
 import Logo from "../../assets/logo-text.png";
 import menu from "../../assets/hamburger.png";
-import { useState } from "react";
+
 export default function Navbar() {
-  const [active, setActive] = useState("home");
   return (
     <div className="container mx-auto sticky top-0 navbar bg-base-100 shadow-sm">
       <div className="navbar-start md:w-1/2 w-5/6 md:justify-start justify-between">

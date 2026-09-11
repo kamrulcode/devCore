@@ -25,6 +25,11 @@ export default function Technologies() {
   const removeFromStack = (id: Technologiese["id"]) => {
     setStack((prev) => prev.filter((item) => item.id !== id));
   };
+
+  const allRemoveFromStack = () => {
+    setStack([]);
+  };
+
   return (
     <div>
       <Suspense fallback={"loading......"}>
@@ -33,6 +38,7 @@ export default function Technologies() {
           stack={stack}
           addToStack={addToStack}
           removeFromStack={removeFromStack}
+          allRemoveFromStack={allRemoveFromStack}
         />
       </Suspense>
     </div>

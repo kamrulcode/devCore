@@ -13,7 +13,7 @@ export default function TechnologiCard({
   addToStack,
 }: Technologie) {
   return (
-    <div className=" p-5 rounded-md  bg-white  shadow-small transition-all duration-300 hover:-translate-y-1 hover:shadow-middle">
+    <div className=" p-6 rounded-md  bg-white  shadow-small transition-all duration-300 hover:-translate-y-1 hover:shadow-middle">
       <div className="flex justify-between">
         <div className="w-10 flex justify-center items-center">
           <img className="w-7" src={technologie.icon} alt="" />
@@ -25,14 +25,14 @@ export default function TechnologiCard({
           {technologie.badge}
         </p>
       </div>
-      <h3 className="font-bold text-lg leading-7">{technologie.name}</h3>
-      <p className="text-xs font-Jakarta font-normal  leading-5 pt-5">
+      <h3 className="font-bold text-lg leading-7 mt-5">{technologie.name}</h3>
+      <p className="text-sm font-Jakarta font-normal  leading-5 mt-3">
         {technologie.description}
       </p>
-      <div className="flex text-xs justify-between pt-10 pb-6">
+      <div className="flex text-xs justify-between items-center pt-8 pb-6">
         <p className="">{technologie.category}</p>{" "}
         <p>{technologie.difficulty}</p>
-        <div className="flex">
+        <div className="flex items-center gap-1">
           <TiStarFullOutline />
           {technologie.rating}
         </div>
