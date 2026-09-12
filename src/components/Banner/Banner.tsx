@@ -11,12 +11,12 @@ export default function Banner() {
           Create your own custom stack, explore different tools, and find the
           right technologies for your development workflow.
         </p>
-        <div className="flex gap-5 sm:justify-start justify-center">
-          <button className="rounded-lg bg-action px-5 py-2.5 font-medium text-white transition hover:bg-hover">
+        <div className="flex sm:gap-5 gap-3 sm:justify-start justify-center">
+          <button className="rounded-lg bg-action sm:px-5 px-3 py-2.5 font-medium text-white transition hover:bg-hover">
             Explore Technologies
           </button>
 
-          <button className="rounded-lg border  text-textPrime  px-5 py-2.5 font-medium hover:bg-actionLight transition">
+          <button className="rounded-lg border  text-textPrime  sm:px-5 px-3 py-2.5 font-medium hover:bg-actionLight transition">
             Learn More
           </button>
         </div>
