@@ -1,4 +1,4 @@
-# 🚀 DevStack — Development Technology Stack
+# 🚀 devCore a Technology Stack
 
 A modern and responsive **Development Technology Stack** web application built with React, TypeScript, and Tailwind CSS.
 
@@ -6,19 +6,17 @@ DevStack allows developers to explore popular technologies, view useful informat
 
 ---
 
-## 🌐 Live Demo
+## 🛠️ Technologies Used
 
-🔗 **Live Website:** [Add your live deployment URL here]
-
-🔗 **GitHub Repository:** [Add your GitHub repository URL here]
-
----
-
-## 📸 Preview
-
-![DevStack Preview](./public/images/devstack-preview.png)
-
-> A clean, modern developer-focused interface for exploring and organizing your technology stack.
+| Technology        | Purpose                           |
+| ----------------- | --------------------------------- |
+| ⚛️ React.js       | Building the user interface       |
+| 📘 TypeScript     | Type-safe JavaScript development  |
+| 🎨 Tailwind CSS   | Styling and responsive design     |
+| 🌐 JSON           | Storing technology data           |
+| ⚡ Vite           | Development server and build tool |
+| 🔔 React-Toastify | User notifications                |
+| 🧩 React Hooks    | State and side-effect management  |
 
 ---
 
@@ -69,17 +67,11 @@ This allows the UI to automatically adapt its colors based on the selected techn
 
 ---
 
-## 🛠️ Technologies Used
+## 🌐 Live Demo
 
-| Technology        | Purpose                           |
-| ----------------- | --------------------------------- |
-| ⚛️ React.js       | Building the user interface       |
-| 📘 TypeScript     | Type-safe JavaScript development  |
-| 🎨 Tailwind CSS   | Styling and responsive design     |
-| 🌐 JSON           | Storing technology data           |
-| ⚡ Vite           | Development server and build tool |
-| 🔔 React-Toastify | User notifications                |
-| 🧩 React Hooks    | State and side-effect management  |
+🔗 **Live Website:** [Add your live deployment URL here]
+
+🔗 **GitHub Repository:** [Add your GitHub repository URL here]
 
 ---
 
@@ -87,32 +79,24 @@ This allows the UI to automatically adapt its colors based on the selected techn
 
 ```text
 src/
+│
+├── assets/
+│   └── Images, icons, and static assets
+│
 ├── components/
-│   ├── common/
-│   ├── layout/
-│   └── ui/
-│
-├── features/
-│   ├── technologies/
-│   │   ├── components/
-│   │   ├── data/
-│   │   ├── hooks/
-│   │   ├── types/
-│   │   └── utils/
-│   │
-│   └── stack/
-│       ├── components/
-│       ├── hooks/
-│       └── types/
-│
-├── pages/
-│   ├── Home/
+│   ├── Banner/
+│   ├── Footer/
+│   ├── Loader/
+│   ├── Navbar/
+│   ├── Stack/
+│   ├── Technologie/
 │   └── Technologies/
 │
-├── types/
-├── hooks/
-├── utils/
-├── styles/
+├── type/
+│   └── type.ts
+│
 ├── App.tsx
+├── index.css
+└── main.tsx
 └── main.tsx
 ```

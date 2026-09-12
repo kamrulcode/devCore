@@ -8,7 +8,7 @@ export default function Navbar() {
   const menuItems = ["Home", "Technologies", "About", "Projects", "Contact"];
   return (
     <div className="container mx-auto sticky top-0 navbar bg-prime  py-4 z-20">
-      <div className="navbar-start lg:w-1/2 w-5/6 lg:justify-start justify-between">
+      <div className="navbar-start lg:w-1/2 w-1/2 lg:justify-start justify-between">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <img src={menu} alt="" />
@@ -35,7 +35,7 @@ export default function Navbar() {
           </ul>
         </div>
         <a
-          className="w-10 h-10 flex items-center font-bold text-2xl gap-3 "
+          className="sm:w-10 sm:h-10 w-7 h-7 flex items-center font-bold sm:text-2xl text-xl sm:gap-3 gap-1"
           href="#"
         >
           <img className="rounded-lg" src={Logo} alt="DevStack" />

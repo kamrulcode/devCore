@@ -1,4 +1,3 @@
-import { TbStackPush } from "react-icons/tb";
 import type { Technologiese } from "../../type/type";
 import StackCard from "./StackCard";
 import { RiStackLine } from "react-icons/ri";
@@ -31,7 +30,6 @@ export default function Stack({
 
       {stack.length === 0 ? (
         <div className="flex flex-col items-center justify-center  min-h-56">
-          {/* <TbStackPush /> */}
           <FiBox className="w-8 h-8 text-gray-500" />
           <p className="text-gray-500">Your Stack is empty.</p>
         </div>
