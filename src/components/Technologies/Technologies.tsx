@@ -32,7 +32,7 @@ export default function Technologies() {
         theme: "dark",
         transition: Slide,
         style: {
-          background: "linear-gradient(135deg, #001F3F, #0066FF)",
+          background: "linear-gradient(135deg, #6366f1 50% ,#45caff 100%)",
           color: "#FFFFFF",
         },
       });
@@ -60,7 +60,7 @@ export default function Technologies() {
       transition: Slide,
 
       style: {
-        background: "linear-gradient(135deg, #001F3F, #7C3AED )",
+        background: "linear-gradient(135deg,#273596, #45caff)",
         color: "#FFFFFF",
       },
     });
@@ -89,8 +89,8 @@ export default function Technologies() {
         transition: Slide,
 
         style: {
-          background: "linear-gradient(135deg, #001F3F,  #7C3AED )",
-          color: "#ff5988",
+          background: "linear-gradient(135deg, #ff1b6b, #45caff)",
+          color: "#ffffff",
         },
       },
     );
@@ -110,8 +110,8 @@ export default function Technologies() {
       transition: Slide,
 
       style: {
-        background: "linear-gradient(135deg, #001F3F,  #7C3AED )",
-        color: "#ff5988",
+        background: "linear-gradient(135deg, #ff1b6b, #45caff )",
+        color: "#ffffff",
       },
     });
   };

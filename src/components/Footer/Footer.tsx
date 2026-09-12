@@ -1,15 +1,31 @@
 import { FaGithub, FaRegCopyright } from "react-icons/fa";
-import Logo from "../../assets/logo-text.png";
+import Logo from "../../assets/logo.png";
+import Back from "../../assets/back.svg";
 import { FaXTwitter } from "react-icons/fa6";
 import { BiLogoLinkedin } from "react-icons/bi";
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-muted pt-10">
-      <div className="container mx-auto w-[90%] text-textSupport">
+    <footer
+      className=" border-t-2 border-muted pt-10"
+      style={{
+        backgroundImage: `url(${Back})`,
+        backgroundPosition: "center",
+        backgroundSize: "contain",
+      }}
+    >
+      <div className=" container mx-auto w-[90%] text-textSupport">
         <div className=" sm:grid sm:grid-cols-5 mb-14">
           <div className="sm:col-span-2 sm:inline-block flex flex-col items-center">
-            <img src={Logo} alt="" />
+            <a
+              className="w-10 h-10 flex items-center font-bold text-2xl gap-3 "
+              href="#"
+            >
+              <img className="rounded-lg" src={Logo} alt="DevStack" />
+              <p className="text-textPrime">
+                dev<span className="text-action">Core</span>
+              </p>
+            </a>
             <p className="sm:w-3/5 my-6 sm:text-left text-center tracking-wider">
               Curated tools, technologies, and resources for developers building
               modern software.

@@ -1,4 +1,4 @@
-import Logo from "../../assets/logo-text.png";
+import Logo from "../../assets/logo.png";
 import menu from "../../assets/hamburger.png";
 import { useState } from "react";
 
@@ -34,8 +34,14 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="" href="#">
-          <img src={Logo} alt="DevStack" />
+        <a
+          className="w-10 h-10 flex items-center font-bold text-2xl gap-3 "
+          href="#"
+        >
+          <img className="rounded-lg" src={Logo} alt="DevStack" />
+          <p className="text-textPrime">
+            dev<span className="text-action">Core</span>
+          </p>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -46,7 +52,7 @@ export default function Navbar() {
               onClick={() => setActive(item)}
               className={`cursor-pointer px-4 py-2 rounded-lg ${
                 active === item
-                  ? " prime-gradient font-medium"
+                  ? " text-action font-medium"
                   : "text-textSupport font-medium hover:text-textPrime "
               }`}
             >
@@ -57,9 +63,9 @@ export default function Navbar() {
       </div>
       {/*  */}
       <div className="navbar-end ">
-        <button className="rounded-lg text-textSupport  font-medium   md:px-3 lg:px-5 px-2 py-2.5   transition hover:bg-actionLight hover:text-textPrime mr-3 sm:text-base text-sm border">
+        <a className="rounded-lg text-textSupport  font-medium   md:px-3 lg:px-5 px-2 py-2.5   transition hover:bg-actionLight hover:text-textPrime mr-3 sm:text-base text-sm ">
           Sign In
-        </button>
+        </a>
         <button className="rounded-lg bg-action font-medium  md:px-3 lg:px-5 px-2 py-2.5  text-white transition hover:bg-hover sm:text-base text-sm ">
           Sign Up
         </button>

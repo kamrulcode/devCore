@@ -15,6 +15,7 @@
   --color-action: #ef517d;
   --color-actionLight: #ebd3da;
   --color-muted: #d9dadb;
+  --color-option: #6366f1;
 
   --color-textPrime: #0f172a;
   --color-textPrimeLight: #373f50;
@@ -30,7 +31,19 @@
 
   /* gradient */
 
-  --gradient-prime: linear-gradient(135deg, #f97316, #ec4899, #7c3aed);
+  /* --gradient-prime: linear-gradient(135deg, #f97316, #ec4899, #7c3aed); */
+  --gradient-prime: linear-gradient(
+    90deg,
+    #ff1b6b 0%,
+    #6366f1 50%,
+    #45caff 100%
+  );
+  /* --gradient-prime: linear-gradient(
+    135deg,
+    #00d4ff 0%,
+    #2563eb 50%,
+    #7c3aed 100%
+  ); */
 
   /* box shadow */
 
