@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const menuItems = ["Home", "Technologies", "About", "Projects", "Contact"];
   return (
-    <div className="container mx-auto sticky top-0 navbar bg-base-100 shadow-sm py-4 z-20">
+    <div className="container mx-auto sticky top-0 navbar bg-prime  py-4 z-20">
       <div className="navbar-start lg:w-1/2 w-5/6 lg:justify-start justify-between">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -15,7 +15,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow md:text-sm text-[9px] leading-5"
+            className="menu menu-sm dropdown-content bg-prime rounded-box z-1 mt-3 w-52 p-2 shadow md:text-sm text-[9px] leading-5"
           >
             <li>
               <a>Home</a>
@@ -47,7 +47,7 @@ export default function Navbar() {
               className={`cursor-pointer px-4 py-2 rounded-lg ${
                 active === item
                   ? " prime-gradient font-medium"
-                  : "text-gray-600 hover:text-secs-light "
+                  : "text-textSupport font-medium hover:text-textPrime "
               }`}
             >
               {item}
@@ -55,11 +55,12 @@ export default function Navbar() {
           ))}
         </ul>
       </div>
+      {/*  */}
       <div className="navbar-end ">
-        <button className="rounded-lg border border-violet-200 bg-white md:px-3 lg:px-5 px-2 py-2.5 font-medium text-violet-600 transition hover:bg-violet-50 md:text-lg text-sm mr-3">
+        <button className="rounded-lg text-textSupport  font-medium   md:px-3 lg:px-5 px-2 py-2.5   transition hover:bg-actionLight hover:text-textPrime mr-3 sm:text-base text-sm border">
           Sign In
         </button>
-        <button className="rounded-lg bg-violet-600 md:px-3 lg:px-5 px-2 py-2.5 font-medium text-white transition hover:bg-violet-700 md:text-lg text-xs">
+        <button className="rounded-lg bg-action font-medium  md:px-3 lg:px-5 px-2 py-2.5  text-white transition hover:bg-hover sm:text-base text-sm ">
           Sign Up
         </button>
       </div>
