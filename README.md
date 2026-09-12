@@ -71,9 +71,9 @@ This allows the UI to automatically adapt its colors based on the selected techn
 
 ## I. What is JSX, and why is it used in React?
 
-    JSX stands for JavaScript XML. It allows us to write HTML-like syntax directly inside JavaScript/TypeScript.
-
-    React uses JSX because it is javaScript based so jsx makes it easy to create a component for UI.
+<h3 style="color:orange"> JSX stands for JavaScript XML. It allows us to write HTML-like syntax directly inside JavaScript/TypeScript.</h3>
+<h3 style="color:orange">React uses JSX because it is javaScript based so jsx makes it easy to create a component for UI.
+</h3>
 
 ---
 
@@ -81,9 +81,11 @@ This allows the UI to automatically adapt its colors based on the selected techn
 
 ###
 
-    The difference between Props and State is that, Props pass data and it can't change data. State store data and if needed it changes.
+<h3 style="color:orange">The difference between Props and State is that, Props pass data and it can't change data. State store data and if needed it changes.</h3>
 
-    Props pass throw component and it can't effect UI, if State changes the UI also change.
+<h3 style="color:orange">Props pass throw component and it can't effect UI, if State changes the UI also change.
+
+</h3>
 
 ###
 
@@ -91,36 +93,38 @@ This allows the UI to automatically adapt its colors based on the selected techn
 
 ## III. What does the `useState` hook do, and where did you use it in this project?
 
-    useState hook store some value in it. It also returen two value and  stored valu and one set function , which we can set the value to store it.
+<h3 style="color:orange">useState hook store some value in it. It also returen two value and  stored valu and one set function , which we can set the value to store it.</h3>
 
-    In this project when I add a stack , I stor it in state. so, when I need the stack data I can get it from useState value.
+<h3 style="color:orange">In this project when I add a stack , I stor it in state. so, when I need the stack data I can get it from useState value.
 
----
+## </h3>
 
 ## IV. What does the `useEffect` hook do, and why did you need it to load the JSON data?
 
-    useEffect hook does some sideeffect , means it fetch data , it connectin eith localstroage. When we need some outside things in react we used useEffect.
+<h3 style="color:orange">useEffect hook does some sideeffect , means it fetch data , it connectin eith localstroage. When we need some outside things in react we used useEffect.</h3>
 
-    I need it to use for localstroag.So,when i set a stack affter set a new stack i have a side effect.
+<h3 style="color:orange">I need it to use for localstroag.So,when i set a stack affter set a new stack i have a side effect.
 
----
+## </h3>
 
 ## V. Why does every item in a `.map()` list need a unique `key` prop?
 
-    Every item in a `.map()` list need a unique key prop because react need  to indentify every list . So , if it does not  have uniqe key , react warinig us.
+<h3 style="color:orange">Every item in a `.map()` list need a unique key prop because react need  to indentify every list . So , if it does not  have uniqe key , react warinig us.
+</h3>
 
 ## VI. What is Conditional Rendering?
 
-    Conditional reandering is  to render UI based on some condition. So, some times  we need render some component based on conditon ,like if isAdded true change the button color gray or disabled is not it show its normal color.
-
----
+<h3 style="color:orange">Conditional reandering is  to render UI based on some condition. So, some times  we need render some component based on conditon ,like if isAdded true change the button color gray or disabled is not it show its normal color.
+</h3>
 
 ## VII. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
 
-    I padd data from a parent component to a child component by passing props .
+ <h3 style="color:orange">I padd data from a parent component to a child component by passing props .</h3>
 
-    And a child  send something back to the parent it does't work like reveres  , means we can't pass props child to parents.
-    React is uni direction its always go parent to child, so if we need to pass someting from child  to parents we do props  lifting , means we set a state or hooks to the parent ,but passing reletive props to the child and then child use  the set Metohd to set something then this value can use to parents .
+<h3 style="color:orange">And a child send something back to the parent it does't work like reveres , means we can't pass props child to parents.
+React is uni direction its always go parent to child, so if we need to pass someting from child to parents we do props lifting , means we set a state or hooks to the parent ,but passing reletive props to the child and then child use the set Metohd to set something then this value can use to parents .
+
+</h3>
 
 <br>
 <br>
