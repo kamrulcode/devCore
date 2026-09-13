@@ -12,11 +12,11 @@ export default function StackCard({ technology, removeFromStack }: CardProps) {
       key={technology.id}
       className="flex items-center justify-between rounded-md  p-3  transition-all duration-300 hover:-translate-y-0.5 leading-4"
     >
-      <div className="flex items-center gap-3  ">
+      <div className="flex  items-center gap-3  ">
         <img
           src={technology.icon}
           alt={technology.name}
-          className="h-12 w-12  flex justify-center items-center   p-2 rounded-lg "
+          className="h-10 w-10  flex justify-center items-center   p-2 rounded-lg "
           style={{ background: `${technology.theme.color + "40"}` }}
         />
 
@@ -33,7 +33,7 @@ export default function StackCard({ technology, removeFromStack }: CardProps) {
       <button
         type="button"
         onClick={() => removeFromStack(technology.id)}
-        className="rounded-lg border border-violet-200 bg-prime px-3 py-2 text-sm font-medium  transition "
+        className=" w-4"
       >
         <IoClose className="w-8 h-8 text-gray-500 hover:text-close" />
       </button>

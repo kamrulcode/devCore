@@ -21,16 +21,16 @@ export default function Technologie({
   const technologies = use(teachnologiesData);
 
   return (
-    <div className="container mx-auto mb-32 w-[90%] ">
-      <h2 className="font-bold sm:text-4xl text-2xl leading-4 font-Jakarta text-textPrime ">
+    <div className="containwidth sm:my-24 my-14">
+      <h2 className="font-bold md:text-4xl text-2xl leading-4 font-Jakarta text-textPrime ">
         Explore the <span className=" prime-gradient ">Technologies</span>
       </h2>
-      <p className="font-medium sm:text-lg text-sm leading-6 font-Jakarta sm:mb-14 mb-8 sm:mt-6 mt-3 text-textSupport tracking-wider">
+      <p className="font-medium md:text-lg text-sm leading-6 font-Jakarta sm:mb-14 mb-8 sm:mt-6 mt-3 text-textSupport tracking-wider">
         Pick one technology per category to build your ideal stack.
       </p>
 
-      <div className="sm:grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8">
-        <div className="md:col-span-3 sm:col-span-2 sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="sm:grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 lg:gap-6 xl:gap-8">
+        <div className="md:col-span-3 sm:col-span-2 sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:gap-6 sm:gap-3 ">
           {technologies.map((technologie) => (
             <TechnologiCard
               key={technologie.id}
@@ -41,7 +41,7 @@ export default function Technologie({
           ))}
         </div>
 
-        <aside>
+        <aside className="md:sticky md:top-18 md:self-start md:h-fit">
           <Stack
             stack={stack}
             removeFromStack={removeFromStack}

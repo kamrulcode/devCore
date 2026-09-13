@@ -15,21 +15,24 @@ export default function Stack({
   removeFromStack,
 }: StackProps) {
   return (
-    <div className="rounded-lg  bg-prime p-6 shadow-prime ">
+    <div className="rounded-lg  bg-prime xl:p-6 p-4 shadow-prime ">
       <div className="mb-4">
-        <h2 className="mb-1 text-2xl font-semibold flex items-center gap-3 text-textPrimeLight">
-          {" "}
-          <RiStackLine /> Your Stack
-        </h2>
+        <div className="flex items-center gap-2 mb-1 xl:text-2xl text-xl font-semibold text-textPrimeLight">
+          <RiStackLine />
+          <h2 className="">Your Stack</h2>
+        </div>
+
         {stack.length === 0 ? (
-          <p className="text-gray-500">No Technology Selected yet.</p>
+          <p className="text-gray-500 xl:text-base text-sm">
+            No Technology Selected yet.
+          </p>
         ) : (
           <p className="text-gray-500">{`${stack.length} Technology Selected.`}</p>
         )}
       </div>
 
       {stack.length === 0 ? (
-        <div className="flex flex-col items-center justify-center  min-h-56">
+        <div className="flex flex-col items-center  justify-center sm:min-h-80 min-h-52">
           <FiBox className="w-8 h-8 text-gray-500" />
           <p className="text-gray-500">Your Stack is empty.</p>
         </div>

@@ -95,7 +95,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="flex justify-between my-10 text-textLight sm:text-base text-xs">
+        <div className=" flex justify-between my-10 text-textLight sm:text-base text-xs ">
           <p className="flex items-center gap-0.5">
             <FaRegCopyright /> 2026 Dev Core. All rights reserved.
           </p>

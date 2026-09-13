@@ -7,10 +7,10 @@ export default function Navbar() {
 
   const menuItems = ["Home", "Technologies", "About", "Projects", "Contact"];
   return (
-    <div className="container mx-auto sticky top-0 navbar bg-prime  py-4 z-20">
-      <div className="navbar-start lg:w-1/2 w-3/4 lg:justify-start justify-between">
+    <div className="containwidth sticky top-0 navbar bg-prime  py-4 z-20">
+      <div className="navbar-start md:w-1/2 w-3/4 md:justify-start justify-between">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <img src={menu} alt="" />
           </div>
           <ul
@@ -43,13 +43,13 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="flex gap-6 text-lg ">
+      <div className="navbar-center hidden md:flex">
+        <ul className="flex gap-2 text-base ">
           {menuItems.map((item) => (
             <li
               key={item}
               onClick={() => setActive(item)}
-              className={`cursor-pointer px-4 py-2 rounded-lg ${
+              className={`cursor-pointer px-2 py-1 rounded-lg ${
                 active === item
                   ? " text-action font-medium"
                   : "text-textSupport font-medium hover:text-textPrime "
@@ -62,10 +62,10 @@ export default function Navbar() {
       </div>
       {/*  */}
       <div className="navbar-end ">
-        <a className="rounded-lg text-textSupport   font-medium   md:px-3 lg:px-5 px-2 py-2.5   transition hover:bg-actionLight hover:text-textPrime sm:mr-3 mr-1 sm:text-base text-sm ">
+        <a className="rounded-lg text-textSupport   font-medium   md:px-3 lg:px-5  px-2 md:py-2 py-2.5   transition hover:bg-actionLight hover:text-textPrime  mr-1 md:text-sm  text-xs ">
           Sign In
         </a>
-        <button className="rounded-lg bg-action font-medium  md:px-3 lg:px-5 px-2 sm:py-2.5 py-1.5  text-white transition hover:bg-hover sm:text-base text-xs ">
+        <button className="rounded-lg bg-action font-medium  lg:px-5 md:px-3 px-2 md:py-2 py-1.5  text-white transition hover:bg-hover md:text-sm  text-xs ">
           Sign Up
         </button>
       </div>

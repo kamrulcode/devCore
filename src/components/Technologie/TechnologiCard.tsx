@@ -13,10 +13,10 @@ export default function TechnologiCard({
   addToStack,
 }: Technologie) {
   return (
-    <div className=" p-6 rounded-lg  bg-prime  shadow-prime transition-all duration-300 hover:-translate-y-1 hover:shadow-middle sm:mb-0 mb-2">
-      <div className="flex justify-between">
+    <div className=" xl:p-6 p-4 rounded-lg  bg-prime  shadow-prime transition-all duration-300 hover:-translate-y-1 hover:shadow-middle sm:mb-0 mb-2 flex flex-col justify-between">
+      <div className="flex justify-between lg:items-center xl:items-start">
         <div
-          className="w-10 flex justify-center items-center  h-10 p-2 rounded-lg "
+          className=" xl:w-12 xl:h-12 w-10 flex justify-center items-center  h-10 p-2 rounded-lg "
           style={{ background: `${technologie.theme.color + "40"}` }}
         >
           <img className="w-7" src={technologie.icon} alt="Techonolgy Icon" />
@@ -28,13 +28,13 @@ export default function TechnologiCard({
           {technologie.badge}
         </p>
       </div>
-      <h3 className="font-bold text-2xl leading-7 mt-5 text-textPrimeLight">
+      <h3 className="font-bold xl:text-2xl text-xl leading-7 mt-5 text-textPrimeLight">
         {technologie.name}
       </h3>
-      <p className="text-base font-Jakarta font-normal  leading-5 mt-4 text-textSupport min-h-16 tracking-wider">
+      <p className="xl:text-base text-sm font-Jakarta font-normal  leading-5 mt-4 text-textSupport  tracking-wider">
         {technologie.description}
       </p>
-      <div className="flex text-sm justify-between items-center pt-8 pb-6">
+      <div className="flex xl:text-sm text-xs justify-between items-center pt-8 pb-6 ">
         <p className="text-textLight">{technologie.category}</p>{" "}
         <p className="text-textLight">{technologie.difficulty}</p>
         <div className="flex items-center gap-1 text-textLight">

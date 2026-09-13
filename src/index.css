@@ -62,3 +62,31 @@
   background-clip: text;
   color: transparent;
 }
+
+@utility containwidth {
+  width: 94%;
+
+  @variant sm {
+    width: 92%;
+  }
+
+  @variant md {
+    width: 90%;
+  }
+  @variant lg {
+    width: 85%;
+  }
+
+  margin-inline: auto;
+}
+
+.Toastify__toast--success .Toastify__toast-icon svg,
+.Toastify__toast--success .Toastify__toast-icon svg path {
+  color: var(--color-prime) !important;
+  fill: var(--color-prime) !important;
+  stroke: var(--color-prime) !important;
+}
+
+.Toastify__toast--success .Toastify__progress-bar {
+  background: #45caff !important;
+}
