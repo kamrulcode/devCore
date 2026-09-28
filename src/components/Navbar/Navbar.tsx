@@ -1,4 +1,5 @@
 import Logo from "../../assets/logo.png";
+import Icon from "../../../public//logonew.svg";
 import menu from "../../assets/hamburger.png";
 import { useState } from "react";
 
@@ -36,7 +37,7 @@ export default function Navbar() {
         </div>
         <div className="flex items-center font-bold sm:text-2xl text-xl sm:gap-3 gap-1">
           <a href="#">
-            <img className="rounded-lg sm:w-10 w-7" src={Logo} alt="DevStack" />
+            <img className="rounded-lg sm:w-10 w-7" src={Icon} alt="DevStack" />
           </a>
           <a className="text-textPrime">
             dev<span className="text-action">Core</span>
