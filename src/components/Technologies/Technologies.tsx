@@ -3,7 +3,6 @@ import Technologie from "../Technologie/Technologie";
 import type { Technologiese } from "../../type/type";
 import { Slide, toast } from "react-toastify";
 import Loader from "../Loader/Loader";
-
 const fetchTechnologies = async (): Promise<Technologiese[]> => {
   const res = await fetch("/data.json");
   const data = await res.json();

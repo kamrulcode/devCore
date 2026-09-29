@@ -1,0 +1,22 @@
+{
+  "name": "tech-stack-auth-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch server.ts",
+    "start": "tsx server.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.0",
+    "better-auth": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^18.0.4",
+    "hono": "^4.9.0",
+    "mongodb": "^6.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

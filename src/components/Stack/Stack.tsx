@@ -7,6 +7,7 @@ import { RiStackLine } from "react-icons/ri";
 import { FiBox } from "react-icons/fi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
+import { useSession } from "../../lib/auth-client";
 
 interface StackProps {
   stack: Technologiese[];
@@ -20,6 +21,7 @@ export default function Stack({
   removeFromStack,
 }: StackProps) {
   const [fixstack, setFixstack] = useState(false);
+  const { data: session } = useSession();
 
   const stackHandle = () => {
     setFixstack((prev) => !prev);
@@ -60,12 +62,12 @@ export default function Stack({
 
         sm:left-auto
         sm:right-4
-        sm:w-[360px]
+        sm:w-90
         sm:rounded-t-2xl
         sm:rounded-b-none
 
         md:right-6
-        md:w-[380px]
+        md:w-95
 
         /* =========================
            LARGE SCREEN
@@ -208,6 +210,7 @@ export default function Stack({
 
           {/* Remove All */}
           <button
+            disabled={!session?.user}
             type="button"
             onClick={allRemoveFromStack}
             className="

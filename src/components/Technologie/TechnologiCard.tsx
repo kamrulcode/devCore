@@ -1,5 +1,7 @@
 import { TiStarFullOutline } from "react-icons/ti";
 import type { Technologiese } from "../../type/type";
+import { useSession } from "../../lib/auth-client";
+import { useNavigate } from "react-router";
 
 interface Technologie {
   technologie: Technologiese;
@@ -12,6 +14,9 @@ export default function TechnologiCard({
   isAdded,
   addToStack,
 }: Technologie) {
+  const { data: session } = useSession();
+
+  const navigate = useNavigate();
   return (
     <div className=" xl:p-6 p-4 rounded-lg  bg-prime  shadow-prime transition-all duration-300 hover:-translate-y-1 hover:shadow-middle sm:mb-0 mb-2 flex flex-col justify-between">
       <div className="flex justify-between lg:items-center xl:items-start">
@@ -45,10 +50,13 @@ export default function TechnologiCard({
           {technologie.rating}
         </div>
       </div>
+
       <button
         type="button"
         disabled={isAdded}
-        onClick={() => addToStack(technologie)}
+        onClick={() => {
+          session?.user ? addToStack(technologie) : navigate("/signin");
+        }}
         className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
           isAdded
             ? "cursor-not-allowed bg-muted text-textMuted"

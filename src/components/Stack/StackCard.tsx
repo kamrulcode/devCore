@@ -1,5 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import type { Technologiese } from "../../type/type";
+import { useSession } from "../../lib/auth-client";
 
 interface CardProps {
   technology: Technologiese;
@@ -7,6 +8,7 @@ interface CardProps {
 }
 
 export default function StackCard({ technology, removeFromStack }: CardProps) {
+  const { data: session } = useSession();
   return (
     <div
       key={technology.id}
@@ -31,6 +33,7 @@ export default function StackCard({ technology, removeFromStack }: CardProps) {
       </div>
 
       <button
+        disabled={!session?.user}
         type="button"
         onClick={() => removeFromStack(technology.id)}
         className=" w-4"

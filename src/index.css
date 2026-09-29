@@ -2,6 +2,7 @@
 
 @import "tailwindcss";
 @plugin "daisyui";
+@import "@heroui/styles";
 
 @theme {
   /* fonts */
@@ -38,6 +39,7 @@
     #6366f1 50%,
     #45caff 100%
   );
+
   /* --gradient-prime: linear-gradient(
     135deg,
     #00d4ff 0%,
