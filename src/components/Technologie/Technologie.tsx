@@ -32,7 +32,7 @@ export default function Technologie() {
         ))}
       </div>
 
-      <aside className="lg:sticky lg:top-24 lg:self-start fixed bottom-0 md:w-97.5right-5 w-73  ">
+      <aside className="lg:sticky lg:top-24 lg:self-start fixed bottom-0 md:w-97.5 right-5 w-73  ">
         <Stack />
       </aside>
     </div>

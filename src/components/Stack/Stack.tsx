@@ -23,23 +23,23 @@ export default function Stack() {
 
   return (
     <Card
-      className={` border border-slate-200 bg-white shadow-xl  shadow-slate-900/5 lg:rounded-xl rounded-b-none  ${expanded ? " bottom-0 z-50  sm:w-[390px]  w-73 " : ""}`}
+      className={` border border-slate-200 bg-white shadow-xl  shadow-slate-900/5 lg:rounded-xl rounded-b-none  ${expanded ? " bottom-0 z-50  sm:w-97.5  w-73 " : ""}`}
     >
       <Card.Content className="p-0">
         <button
           type="button"
           onClick={() => setExpanded((value) => !value)}
-          className="flex w-full items-center justify-between p-5 text-left lg:cursor-default lg:h-20 h-10 "
+          className="flex w-full items-center justify-between sm:p-5 p-2 text-left lg:cursor-default lg:h-20 sm:h-10 h-3 "
         >
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-violet-100 to-fuchsia-100 text-violet-600">
+            <div className="flex md:h-11 md:w-11 h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-violet-100 to-fuchsia-100 text-violet-600">
               <FiLayers size={21} />
             </div>
             <div>
-              <h2 className="text-lg font-extrabold text-slate-900">
+              <h2 className="sm:text-lg text-sm font-extrabold text-slate-900">
                 Your Stack
               </h2>
-              <p className="mt-0.5 text-xs text-slate-500">
+              <p className="sm:mt-0.5 sm:text-xs text-[10px] text-slate-500">
                 {stack.length
                   ? `${stack.length} technology selected`
                   : "No technology selected yet"}
