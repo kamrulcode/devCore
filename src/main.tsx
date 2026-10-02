@@ -1,13 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.tsx";
 import { ToastContainer } from "react-toastify";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import SignIn from "./pages/SignIn.tsx";
-import SignUp from "./pages/SignUp.tsx";
-import HomePage from "./pages/HomePage.tsx";
+
+import "./index.css";
+import App from "./App";
+import HomePage from "./pages/HomePage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />,
-    <ToastContainer />
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer newestOnTop position="top-right" theme="light" />
+    </>
   </StrictMode>,
 );

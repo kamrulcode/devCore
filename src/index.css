@@ -1,72 +1,50 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
-@plugin "daisyui";
 @import "@heroui/styles";
 
 @theme {
-  /* fonts */
-  --font-Jakarta: "Plus Jakarta Sans", sans-serif;
-  --font-Inter: "Inter", sans-serif;
-
-  /* color */
-
-  --color-prime: #ffffff;
-  --color-support: #0f172a;
+  --font-inter: "Inter", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --color-ink: #0f172a;
+  --color-muted-ink: #64748b;
+  --color-brand-pink: #f43f7a;
+  --color-brand-violet: #6d28d9;
   --color-action: #ef517d;
-  --color-actionLight: #ebd3da;
-  --color-muted: #d9dadb;
-  --color-option: #6366f1;
-
-  --color-textPrime: #0f172a;
-  --color-textPrimeLight: #373f50;
-  --color-textSupport: #4d5464;
-  --color-textLight: #64748b;
-  --color-textMuted: #99a3b2;
-
   --color-hover: #ed3568;
-
-  --color-write: #22c55e;
-  --color-notice: #f59e0b;
-  --color-close: #ea1551;
-
-  /* gradient */
-
-  /* --gradient-prime: linear-gradient(135deg, #f97316, #ec4899, #7c3aed); */
-  --gradient-prime: linear-gradient(
-    90deg,
-    #ff1b6b 0%,
-    #6366f1 50%,
-    #45caff 100%
-  );
-
-  /* --gradient-prime: linear-gradient(
-    135deg,
-    #00d4ff 0%,
-    #2563eb 50%,
-    #7c3aed 100%
-  ); */
-
-  /* box shadow */
-
-  --shadow-small:
-    rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  --shadow-middle:
-    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  --shadow-prime:
-    rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
-    rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
-@utility prime-gradient {
-  background-image: var(--gradient-prime);
-  background-clip: text;
-  color: transparent;
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-@utility containwidth {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #fff;
+  color: #0f172a;
+  font-family: var(--font-inter);
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #c026d3;
+  color: #fff;
+}
+
+@utility contain-width {
   width: 94%;
+  margin-inline: auto;
 
   @variant sm {
     width: 92%;
@@ -75,20 +53,81 @@
   @variant md {
     width: 90%;
   }
+
   @variant lg {
-    width: 85%;
+    width: 86%;
   }
-
-  margin-inline: auto;
 }
 
-.Toastify__toast--success .Toastify__toast-icon svg,
-.Toastify__toast--success .Toastify__toast-icon svg path {
-  color: var(--color-prime) !important;
-  fill: var(--color-prime) !important;
-  stroke: var(--color-prime) !important;
+@utility brand-gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    #f43f7a 0%,
+    #7c3aed 55%,
+    #3b82f6 100%
+  );
+  background-clip: text;
+  color: transparent;
 }
 
-.Toastify__toast--success .Toastify__progress-bar {
-  background: #45caff !important;
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.08);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+.auth-background {
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(217, 70, 239, 0.28),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 75%,
+      rgba(99, 102, 241, 0.25),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #f8fbff 0%, #fff8fd 48%, #f4f5ff 100%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 30px 80px rgba(79, 70, 229, 0.12);
+  backdrop-filter: blur(22px);
+}
+
+.dark-panel {
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(217, 70, 239, 0.26),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #11164d 0%, #2d268f 55%, #5b21b6 100%);
 }

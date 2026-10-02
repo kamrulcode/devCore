@@ -1,44 +1,43 @@
-import { IoClose } from "react-icons/io5";
-import type { Technologiese } from "../../type/type";
-import { useSession } from "../../lib/auth-client";
+import { FiX } from "react-icons/fi";
 
-interface CardProps {
+import type { Technologiese } from "../../type/type";
+import { useTech } from "../../context/TechProvider";
+
+interface Props {
   technology: Technologiese;
-  removeFromStack: (id: Technologiese["id"]) => void;
 }
 
-export default function StackCard({ technology, removeFromStack }: CardProps) {
-  const { data: session } = useSession();
-  return (
-    <div
-      key={technology.id}
-      className="flex items-center justify-between rounded-md  p-3  transition-all duration-300 hover:-translate-y-0.5 leading-4"
-    >
-      <div className="flex  items-center gap-3  ">
-        <img
-          src={technology.icon}
-          alt={technology.name}
-          className="h-10 w-10  flex justify-center items-center   p-2 rounded-lg "
-          style={{ background: `${technology.theme.color + "40"}` }}
-        />
+export default function StackCard({ technology }: Props) {
+  const { session, removeFromStack } = useTech();
 
-        <div className="flex flex-col ">
-          <span className="font-medium text-textPrimeLight">
+  return (
+    <div className="flex items-center justify-between rounded-xl p-3 transition hover:bg-white hover:shadow-sm">
+      <div className="flex min-w-0 items-center gap-3">
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg p-2"
+          style={{ background: `${technology.theme.color}22` }}
+        >
+          <img
+            src={technology.icon}
+            alt={technology.name}
+            className="h-6 w-6 object-contain"
+          />
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-bold text-slate-700">
             {technology.name}
-          </span>
-          <span className="font-normal text-xs text-textLight">
-            {technology.category}
-          </span>
+          </p>
+          <p className="text-xs text-slate-400">{technology.category}</p>
         </div>
       </div>
-
       <button
-        disabled={!session?.user}
         type="button"
+        disabled={!session?.user}
         onClick={() => removeFromStack(technology.id)}
-        className=" w-4"
+        className="ml-3 rounded-lg p-2 text-slate-400 transition hover:bg-red-50 hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-40"
+        aria-label={`Remove ${technology.name}`}
       >
-        <IoClose className="w-8 h-8 text-gray-500 hover:text-close" />
+        <FiX size={17} />
       </button>
     </div>
   );

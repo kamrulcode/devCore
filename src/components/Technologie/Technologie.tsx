@@ -1,54 +1,40 @@
-import { use } from "react";
-import TechnologiCard from "./TechnologiCard";
 import type { Technologiese } from "../../type/type";
-import Stack from "../Stack/Stack";
 
-interface TechProps {
-  teachnologiesData: Promise<Technologiese[]>;
+import Stack from "../Stack/Stack";
+import TechnologiCard from "./TechnologiCard";
+import { useTech } from "../../context/TechProvider";
+
+interface Props {
+  technologies: Technologiese[];
   stack: Technologiese[];
   addToStack: (technology: Technologiese) => void;
   removeFromStack: (id: Technologiese["id"]) => void;
   allRemoveFromStack: () => void;
 }
 
-export default function Technologie({
-  teachnologiesData,
-  stack,
-  allRemoveFromStack,
-  addToStack,
-  removeFromStack,
-}: TechProps) {
-  const technologies = use(teachnologiesData);
-
+export default function Technologie() {
+  const {
+    technologies,
+    stack,
+    addToStack,
+    removeFromStack,
+    allRemoveFromStack,
+  } = useTech();
   return (
-    <div className="containwidth sm:my-24 my-14">
-      <h2 className="font-bold md:text-4xl text-2xl leading-4 font-Jakarta text-textPrime ">
-        Explore the <span className=" prime-gradient ">Technologies</span>
-      </h2>
-      <p className="font-medium md:text-lg text-sm leading-6 font-Jakarta sm:mb-14 mb-8 sm:mt-6 mt-3 text-textSupport tracking-wider">
-        Pick one technology per category to build your ideal stack.
-      </p>
-
-      <div className="sm:grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 lg:gap-6 xl:gap-8">
-        <div className="md:col-span-3 sm:col-span-2 sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:gap-6 sm:gap-3 ">
-          {technologies.map((technologie) => (
-            <TechnologiCard
-              key={technologie.id}
-              technologie={technologie}
-              isAdded={stack.some((item) => item.id === technologie.id)}
-              addToStack={addToStack}
-            />
-          ))}
-        </div>
-
-        <aside className="md:sticky md:top-18 md:self-start md:h-fit">
-          <Stack
-            stack={stack}
-            removeFromStack={removeFromStack}
-            allRemoveFromStack={allRemoveFromStack}
+    <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {technologies.map((technology) => (
+          <TechnologiCard
+            key={technology.id}
+            technologie={technology}
+            isAdded={stack.some((item) => item.id === technology.id)}
           />
-        </aside>
+        ))}
       </div>
+
+      <aside className="lg:sticky lg:top-24 lg:self-start fixed bottom-0 md:w-97.5right-5 w-73  ">
+        <Stack />
+      </aside>
     </div>
   );
 }

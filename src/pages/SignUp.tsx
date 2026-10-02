@@ -1,179 +1,287 @@
-import { Check } from "@gravity-ui/icons";
-
-import {
-  Button,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  TextField,
-} from "@heroui/react";
-
-import { signUp } from "../lib/auth-client";
+import { Button } from "@heroui/react";
+import { FiArrowRight, FiMail, FiRefreshCw, FiUser } from "react-icons/fi";
+import { useState } from "react";
+import type { FormEvent } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { signUp, signIn } from "../lib/auth-client";
+import { DevCoreLogo } from "../components/shared/DevCoreLogo";
 import { PasswordWithToggle } from "../components/PasswordWithToggle";
-import { useNavigate } from "react-router";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
 
-    const formData = new FormData(e.currentTarget);
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true);
 
-    const data: Record<string, string> = Object.fromEntries(
-      formData.entries(),
-    ) as Record<string, string>;
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
 
-    const { data: devUser } = await signUp.email({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    });
+    if (name.length < 3) {
+      toast.error("Name must be at least 3 characters.");
+      setLoading(false);
+      return;
+    }
 
-    console.log(devUser);
-    navigate("/");
+    try {
+      const result = await signUp.email({ name, email, password });
+
+      if (result.error) {
+        console.error("Sign-up error:", result.error);
+        toast.error(
+          result.error.message ||
+            (result.error.status && result.error.status >= 500
+              ? "Server error. Check /api/health on your deployment."
+              : "Unable to create your account."),
+        );
+        return;
+      }
+
+      toast.success("Account created successfully.");
+      navigate("/");
+    } catch (error) {
+      console.error("Sign-up failed:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleGoolgeSignIn = async () => {
+    try {
+      const { data: gData, error } = await signIn.social({
+        provider: "google",
+        callbackURL: "/", // Optional: Where to redirect after success
+        errorCallbackURL: "/login", // Optional: Where to redirect if it fails
+      });
+
+      if (error) {
+        // Better Auth standard error object contains a message and status
+        console.error("Sign in failed:", error.message);
+        return;
+      }
+
+      // If you pass an idToken or have automatic redirect turned off:
+      console.log("Sign in successful:", gData);
+    } catch (err) {
+      // Catch any unexpected network/runtime exceptions
+      console.error("An unexpected error occurred:", err);
+    }
   };
-
   return (
-    <div className="flex flex-col w-116 h-135 mx-auto  justify-center gap-10 px-20 my-20  bg-radial-[at_100%_15%] from-[#ffc3d8] via-[#cdceff] to-[#ffb1cc] to-90% rounded-2xl bg-[url(/bg.jpg)]  bg-cover bg-center bg-no-repeat">
-      <h3 className="text-center text-2xl font-medium">
-        Get Start to Find <br />
-        the Best Stack
-      </h3>
-      <Form
-        className="flex w-full max-w-96 flex-col gap-5 "
-        onSubmit={onSubmit}
-      >
-        {/* Name */}
-        <TextField
-          isRequired
-          name="name"
-          validate={(value) => {
-            if (value.length < 3) {
-              return "Name must be at least 3 characters";
-            }
+    <main className="auth-background relative min-h-[calc(100vh-72px)] overflow-hidden py-12 sm:py-16">
+      <div className="absolute -left-40 -top-40 h-[480px] w-[480px] rounded-full bg-fuchsia-400/30 blur-3xl" />
+      <div className="absolute -right-40 bottom-0 h-[600px] w-[600px] rounded-full bg-indigo-400/25 blur-3xl" />
 
-            return null;
-          }}
-          className="w-full"
-        >
-          <Label className="mb-2 block text-sm font-medium text-[#172554]">
-            Name
-          </Label>
+      <div className="relative mx-auto w-[92%] max-w-5xl">
+        <div className="glass-card overflow-hidden rounded-[28px]">
+          <div className="grid lg:grid-cols-2">
+            <section className="dark-panel relative min-h-[600px] overflow-hidden p-8 text-white sm:p-12">
+              <div className="relative z-10">
+                <DevCoreLogo light />
+                <p className="mt-14 text-xs font-bold uppercase tracking-[.24em] text-fuchsia-300">
+                  Developer Community
+                </p>
+                <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
+                  Build Your Future
+                  <br />
+                  with{" "}
+                  <span className="bg-gradient-to-r from-pink-400 to-violet-300 bg-clip-text text-transparent">
+                    DevCore
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-md text-sm leading-7 text-indigo-100 sm:text-base">
+                  Join our community and get access to modern technologies,
+                  expert resources, and exciting projects. Let&apos;s build
+                  something amazing together.
+                </p>
 
-          <Input
-            placeholder="John Doe"
-            className="
-            h-11
-            w-full
-            rounded-xl
-            border
-            border-gray-200
-            bg-white
-            px-3
-            text-sm
-            text-[#172554]
-            shadow-sm
-            outline-none
-            transition
-            placeholder:text-gray-400
-            focus:border-[#f34b7c]
-            focus:ring-2
-            focus:ring-[#f34b7c]/10
-          "
-          />
+                <div className="mt-10 space-y-5">
+                  {[
+                    [
+                      "Modern Technologies",
+                      "Learn the latest tools & frameworks",
+                      "bg-violet-500",
+                    ],
+                    [
+                      "Expert Community",
+                      "Get help and grow together",
+                      "bg-pink-500",
+                    ],
+                    [
+                      "Real Projects",
+                      "Build your portfolio with hands-on work",
+                      "bg-blue-500",
+                    ],
+                  ].map(([title, description, color]) => (
+                    <div key={title} className="flex items-center gap-4">
+                      <div
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${color} text-white shadow-lg`}
+                      >
+                        <span className="text-lg font-black">+</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold">{title}</p>
+                        <p className="mt-1 text-xs text-indigo-200">
+                          {description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          <FieldError className="mt-1 text-xs text-red-500" />
-        </TextField>
+              <div className="absolute -bottom-3 left-0 right-0 opacity-80">
+                <svg
+                  viewBox="0 0 900 190"
+                  className="w-full"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient
+                      id="signup-wave"
+                      x1="0"
+                      y1="0"
+                      x2="900"
+                      y2="0"
+                    >
+                      <stop stopColor="#6366F1" />
+                      <stop offset=".5" stopColor="#EC4899" />
+                      <stop offset="1" stopColor="#8B5CF6" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0 120C150 30 260 190 430 100C600 15 720 150 900 45V190H0Z"
+                    fill="url(#signup-wave)"
+                    opacity=".45"
+                  />
+                  <path
+                    d="M0 140C150 50 270 200 440 120C600 45 730 175 900 70"
+                    stroke="#F0ABFC"
+                    strokeWidth="2"
+                    opacity=".6"
+                  />
+                </svg>
+              </div>
+            </section>
 
-        {/* Email */}
-        <TextField
-          isRequired
-          name="email"
-          type="email"
-          validate={(value) => {
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-              return "Please enter a valid email address";
-            }
+            <section className="bg-white p-8 sm:p-12">
+              <div className="mx-auto max-w-md">
+                <div className="inline-flex rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-600">
+                  Create Account
+                </div>
+                <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                  Get Started to Find
+                  <br />
+                  the <span className="brand-gradient-text">Best Stack</span>
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-slate-500">
+                  Create your account and start your journey with DevCore today.
+                </p>
 
-            return null;
-          }}
-          className="w-full"
-        >
-          <Label className="mb-2 block text-sm font-medium text-[#172554]">
-            Email
-          </Label>
+                <form onSubmit={onSubmit} className="mt-8 space-y-5">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="mb-2 block text-sm font-semibold text-slate-800"
+                    >
+                      Name <span className="text-pink-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <FiUser
+                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        id="name"
+                        name="name"
+                        required
+                        minLength={3}
+                        placeholder="John Doe"
+                        className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                      />
+                    </div>
+                  </div>
 
-          <Input
-            placeholder="john@example.com"
-            className="
-            h-11
-            w-full
-            rounded-xl
-            border
-            border-gray-200
-            bg-white
-            px-3
-            text-sm
-            text-[#172554]
-            shadow-sm
-            outline-none
-            transition
-            placeholder:text-gray-400
-            focus:border-[#f34b7c]
-            focus:ring-2
-            focus:ring-[#f34b7c]/10
-          "
-          />
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-semibold text-slate-800"
+                    >
+                      Email <span className="text-pink-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <FiMail
+                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="john@example.com"
+                        className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                      />
+                    </div>
+                  </div>
 
-          <FieldError className="mt-1 text-xs text-red-500" />
-        </TextField>
+                  <PasswordWithToggle />
 
-        {/* Password */}
-        <div className="w-full">
-          <PasswordWithToggle />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    size="lg"
+                    className="h-12 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-600 font-bold text-white shadow-lg shadow-fuchsia-500/20"
+                  >
+                    {loading ? (
+                      "Creating account..."
+                    ) : (
+                      <>
+                        Submit <FiArrowRight size={18} />
+                      </>
+                    )}
+                  </Button>
+
+                  <Button
+                    type="reset"
+                    fullWidth
+                    size="lg"
+                    variant="outline"
+                    className="h-12 border-slate-200 font-semibold text-slate-600"
+                  >
+                    <FiRefreshCw size={16} /> Reset
+                  </Button>
+                </form>
+                <p className="text-center">Or</p>
+                <Button
+                  fullWidth
+                  size="lg"
+                  className="h-12 border-slate-200 font-semibold text-slate-600"
+                  onClick={handleGoolgeSignIn}
+                >
+                  <FiRefreshCw size={16} /> Google
+                </Button>
+
+                <p className="mt-7 text-center text-sm text-slate-500">
+                  Already have an account?{" "}
+                  <Link
+                    to="/signin"
+                    className="font-bold text-violet-600 hover:text-pink-500"
+                  >
+                    Sign in
+                  </Link>
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
-
-        {/* Buttons */}
-        <div className="flex items-center gap-2">
-          <Button
-            type="submit"
-            className="
-            h-10
-            rounded-full
-            bg-[#f34b7c]
-            px-6
-            text-sm
-            font-semibold
-            text-white
-            shadow-sm
-            transition
-            hover:bg-[#e74373]
-          "
-          >
-            <Check className="h-4 w-4" />
-            Submit
-          </Button>
-
-          <Button
-            type="reset"
-            variant="secondary"
-            className="
-            h-10
-            rounded-full
-            bg-gray-100
-            px-5
-            text-sm
-            font-medium
-            text-gray-700
-            transition
-            hover:bg-gray-200
-          "
-          >
-            Reset
-          </Button>
-        </div>
-      </Form>
-    </div>
+      </div>
+    </main>
   );
 }

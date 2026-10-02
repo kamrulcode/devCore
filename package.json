@@ -1,7 +1,7 @@
 {
-  "name": "devstack",
+  "name": "devcore",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,12 +11,8 @@
   },
   "dependencies": {
     "@better-auth/mongo-adapter": "^1.7.6",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
     "@heroui/react": "^3.2.6",
     "@heroui/styles": "^3.2.6",
-    "@mui/material": "^9.4.0",
-    "@tailwindcss/vite": "^4.3.3",
     "better-auth": "^1.7.6",
     "mongodb": "^7.7.0",
     "react": "^19.2.8",
@@ -24,17 +20,19 @@
     "react-icons": "^5.7.0",
     "react-router": "^8.4.0",
     "react-toastify": "^11.1.0",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "@types/node": "^24.19.0"
   },
   "devDependencies": {
-    "@gravity-ui/icons": "^2.22.0",
-    "@types/node": "^24.13.3",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
-    "daisyui": "^5.7.36",
     "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

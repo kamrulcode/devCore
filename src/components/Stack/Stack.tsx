@@ -1,246 +1,96 @@
-"use client";
-
+import { Button, Card } from "@heroui/react";
+import {
+  FiBox,
+  FiChevronDown,
+  FiChevronUp,
+  FiLayers,
+  FiTrash2,
+} from "react-icons/fi";
+import { useState, useContext } from "react";
 import type { Technologiese } from "../../type/type";
 import StackCard from "./StackCard";
+import { useTech } from "../../context/TechProvider";
 
-import { RiStackLine } from "react-icons/ri";
-import { FiBox } from "react-icons/fi";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useState } from "react";
-import { useSession } from "../../lib/auth-client";
+// interface Props {
+//   stack: Technologiese[];
+//   removeFromStack: (id: Technologiese["id"]) => void;
+//   allRemoveFromStack: () => void;
+// }
 
-interface StackProps {
-  stack: Technologiese[];
-  removeFromStack: (id: Technologiese["id"]) => void;
-  allRemoveFromStack: () => void;
-}
-
-export default function Stack({
-  stack,
-  allRemoveFromStack,
-  removeFromStack,
-}: StackProps) {
-  const [fixstack, setFixstack] = useState(false);
-  const { data: session } = useSession();
-
-  const stackHandle = () => {
-    setFixstack((prev) => !prev);
-  };
+export default function Stack() {
+  const [expanded, setExpanded] = useState(false);
+  const { stack, removeFromStack, allRemoveFromStack, session } = useTech();
 
   return (
-    <div
-      className={`
-        bg-prime
-        shadow-prime
-
-        /* =========================
-           MOBILE
-           ========================= */
-
-        fixed
-        bottom-0
-        left-0
-        right-0
-        z-50
-
-        w-full
-        h-[40vh]
-
-        rounded-t-2xl
-        p-4
-
-        transition-transform
-        duration-300
-        ease-in-out
-
-        ${fixstack ? "translate-y-0" : "translate-y-[calc(100%-50px)]"}
-
-        /* =========================
-           TABLET / MEDIUM
-           sm → lg
-           ========================= */
-
-        sm:left-auto
-        sm:right-4
-        sm:w-90
-        sm:rounded-t-2xl
-        sm:rounded-b-none
-
-        md:right-6
-        md:w-95
-
-        /* =========================
-           LARGE SCREEN
-           lg+
-           ========================= */
-
-        lg:static
-        lg:w-auto
-        lg:h-auto
-        lg:translate-y-0
-        lg:rounded-lg
-        lg:p-4
-
-        xl:p-6
-      `}
+    <Card
+      className={` border border-slate-200 bg-white shadow-xl  shadow-slate-900/5 lg:rounded-xl rounded-b-none  ${expanded ? " bottom-0 z-50  sm:w-[390px]  w-73 " : ""}`}
     >
-      {/* Toggle Button */}
-      <button
-        type="button"
-        onClick={stackHandle}
-        aria-label={fixstack ? "Collapse stack" : "Expand stack"}
-        className="
-          absolute
-
-          -top-10
-
-          left-1/2
-          -translate-x-1/2
-
-          flex
-          h-10
-          w-20
-          items-center
-          justify-center
-
-          rounded-t-xl
-
-          border
-          border-gray-200
-          border-b-0
-
-          bg-prime
-
-          text-textPrimeLight
-
-          shadow-[0_-4px_10px_rgba(0,0,0,0.08)]
-
-          transition
-
-          hover:bg-gray-50
-
-          hover:text-primary
-
-          /* Hide button on large screens */
-          lg:hidden
-        "
-      >
-        {fixstack ? (
-          <IoIosArrowDown className="text-xl" />
-        ) : (
-          <IoIosArrowUp className="text-xl" />
-        )}
-      </button>
-
-      {/* Header */}
-      <div className="relative mb-4">
-        <div
-          className="
-            mb-1
-            flex
-            items-center
-            gap-2
-            text-xl
-            font-semibold
-            text-textPrimeLight
-
-            xl:text-2xl
-          "
+      <Card.Content className="p-0">
+        <button
+          type="button"
+          onClick={() => setExpanded((value) => !value)}
+          className="flex w-full items-center justify-between p-5 text-left lg:cursor-default lg:h-20 h-10 "
         >
-          <RiStackLine />
-
-          <h2>Your Stack</h2>
-        </div>
-
-        {stack.length === 0 ? (
-          <p className="text-sm text-gray-500 xl:text-base">
-            No Technology Selected yet.
-          </p>
-        ) : (
-          <p className="text-gray-500">
-            {`${stack.length} Technology Selected.`}
-          </p>
-        )}
-      </div>
-
-      {/* Empty Stack */}
-      {stack.length === 0 ? (
-        <div
-          className="
-            flex
-            min-h-52
-            flex-col
-            items-center
-            justify-center
-
-            sm:min-h-80
-          "
-        >
-          <FiBox className="h-8 w-8 text-gray-500" />
-
-          <p className="text-gray-500">Your Stack is empty.</p>
-        </div>
-      ) : (
-        <>
-          {/* Stack Items */}
-          <div
-            className="
-              h-[calc(40vh-170px)]
-
-              space-y-3
-              overflow-y-auto
-              pr-1
-
-              /* Normal height on tablet */
-              sm:h-35
-
-              /* Normal height on large */
-              lg:h-auto
-              lg:overflow-hidden
-            "
-          >
-            {stack.map((technology) => (
-              <StackCard
-                key={technology.id}
-                technology={technology}
-                removeFromStack={removeFromStack}
-              />
-            ))}
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-violet-100 to-fuchsia-100 text-violet-600">
+              <FiLayers size={21} />
+            </div>
+            <div>
+              <h2 className="text-lg font-extrabold text-slate-900">
+                Your Stack
+              </h2>
+              <p className="mt-0.5 text-xs text-slate-500">
+                {stack.length
+                  ? `${stack.length} technology selected`
+                  : "No technology selected yet"}
+              </p>
+            </div>
           </div>
+          <span className="lg:hidden text-slate-400">
+            {expanded ? <FiChevronDown size={20} /> : <FiChevronUp size={20} />}
+          </span>
+        </button>
 
-          {/* Remove All */}
-          <button
-            disabled={!session?.user}
-            type="button"
-            onClick={allRemoveFromStack}
-            className="
-              mt-4
-              w-full
-              rounded-lg
+        <div
+          className={`${expanded ? "block" : "hidden"} max-h-[58vh] overflow-y-auto px-4 pb-4 lg:block lg:max-h-none`}
+        >
+          {stack.length === 0 ? (
+            <div className="flex min-h-56 flex-col items-center justify-center rounded-2xl bg-slate-50 px-6 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-slate-400 shadow-sm">
+                <FiBox size={24} />
+              </div>
+              <p className="mt-4 font-semibold text-slate-700">
+                Your stack is empty
+              </p>
+              <p className="mt-1 text-xs leading-5 text-slate-400">
+                Choose technologies from the cards to build your stack.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-1 rounded-2xl bg-slate-50 p-2">
+              {stack.map((technology) => (
+                <StackCard key={technology.id} technology={technology} />
+              ))}
+            </div>
+          )}
 
-              border
-              border-red-200
-
-              bg-white
-
-              px-3
-              py-2
-
-              text-lg
-              font-medium
-              text-close
-
-              transition
-
-              hover:bg-red-50
-
-              sm:mt-6
-            "
+          <Button
+            fullWidth
+            variant="outline"
+            isDisabled={!session?.user || stack.length === 0}
+            onPress={allRemoveFromStack}
+            className="mt-4 h-11 border-red-200 font-bold text-red-500 hover:bg-red-50"
           >
-            Remove All
-          </button>
-        </>
-      )}
-    </div>
+            <FiTrash2 size={16} /> Remove All
+          </Button>
+
+          {!session?.user && (
+            <p className="mt-3 text-center text-xs leading-5 text-slate-400">
+              Sign in to save your stack across sessions.
+            </p>
+          )}
+        </div>
+      </Card.Content>
+    </Card>
   );
 }

@@ -1,133 +1,85 @@
-# 🚀 devCore a Technology Stack
+# DevCore — Full-Stack Vite + React + TypeScript
 
-A modern and responsive **Development Technology Stack** web application built with React, TypeScript, and Tailwind CSS.
+DevCore is a Vite React TypeScript application with Better Auth, MongoDB persistence, HeroUI, Tailwind CSS, and Vercel Functions.
 
-DevStack allows developers to explore popular technologies, view useful information about each technology, and build their own personalized development stack by adding technologies to their stack.
+## Architecture
 
----
+The project deliberately uses the same `/api/*` contract in both environments:
 
-## 🛠️ Technologies Used
+- **Local development:** Vite's dev server mounts the API handlers directly, so `npm run dev` is all you need. No Vercel CLI is required.
+- **Vercel production/preview:** the files in `api/` are deployed as Vercel Functions automatically.
+- **Database:** Better Auth and the saved technology stack use the same MongoDB database.
+- **Secrets:** MongoDB and Better Auth secrets stay server-side and are never prefixed with `VITE_`.
 
-| Technology        | Purpose                           |
-| ----------------- | --------------------------------- |
-| ⚛️ React.js       | Building the user interface       |
-| 📘 TypeScript     | Type-safe JavaScript development  |
-| 🎨 Tailwind CSS   | Styling and responsive design     |
-| 🌐 JSON           | Storing technology data           |
-| ⚡ Vite           | Development server and build tool |
-| 🔔 React-Toastify | User notifications                |
-| 🧩 React Hooks    | State and side-effect management  |
+The Vite dev-server API integration is intentionally only active during development. It does not become client-side code in the production build.
 
----
+## Project structure
 
-## ✨ Features
+```text
+api/
+  auth/[...all].ts   # Vercel Better Auth function
+  stack.ts           # Vercel stack function
+src/
+  lib/server/
+    auth.ts          # shared Better Auth configuration
+    mongodb.ts       # shared MongoDB connection
+  ...                 # React UI
+vite.config.ts        # Vite + local /api handlers
+vercel.json            # Vercel SPA rewrite + asset caching
+```
 
-### 1. 🔍 Explore Technologies
+## Environment variables
 
-Browse a collection of popular development technologies organized by categories such as:
+Create `.env.local` in the project root:
 
-- Frontend
-- Backend
-- Database
-- Language
-- Styling
-- DevOps
-- Tools
+```env
+BETTER_AUTH_SECRET=your-random-secret
+BETTER_AUTH_DB_URL=mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/?retryWrites=true&w=majority
+BETTER_AUTH_URL=http://localhost:5173
+BETTER_AUTH_ALLOWED_HOSTS=
+```
 
-Each technology card provides useful information including its icon, description, rating, difficulty level, and category.
+Never commit `.env.local`. Never expose these variables with the `VITE_` prefix.
 
----
+For Vercel, add the same server-side variables in **Project Settings → Environment Variables** for Development, Preview, and Production as appropriate. `BETTER_AUTH_URL` should be the production URL in Production; Vercel preview hosts are allowed by the Better Auth configuration.
 
-### 2. 🧩 Build Your Own Stack
+## Local development
 
-Add technologies to your personal development stack with a single click.
+```bash
+npm install
+npm run dev
+```
 
-Once a technology is added:
+Open:
 
-- The **Add to Stack** button becomes disabled.
-- The technology appears in the **Your Stack** section.
-- Duplicate technologies cannot be added.
-- Technologies can be removed from the stack.
-- Removing a technology makes its button available again.
+```text
+http://localhost:5173
+```
 
----
+There is no need to run `vercel dev`.
 
-### 3. 🎨 Dynamic Technology Themes
+The local Vite server handles `/api/auth/*` and `/api/stack` through the same handlers used by Vercel.
 
-Each technology has its own visual theme based on its brand identity.
+## Verify the database/API
 
-The technology data contains dynamic values for:
+With the development server running, open:
 
-- Icon color
-- Background color
-- Border color
-- Glow effect
+```text
+http://localhost:5173/api/stack
+```
 
-This allows the UI to automatically adapt its colors based on the selected technology while maintaining a consistent design system.
+When signed out, the endpoint should return an empty technology ID array. Then create an account, sign in, add technologies, refresh, and verify the saved stack persists.
 
----
+## Deploy to Vercel
 
-# ❓React Project — Questions & Answers
+Link the repository/project in Vercel and deploy normally. Vercel automatically detects the Vite application and deploys the root `api/` files as Functions.
 
-## I. What is JSX, and why is it used in React?
+Before deployment, make sure the server-only environment variables are configured in Vercel.
 
-<h3 style="color:orange"> JSX stands for JavaScript XML. It allows us to write HTML-like syntax directly inside JavaScript/TypeScript.</h3>
-<h3 style="color:orange">React uses JSX because it is javaScript based so jsx makes it easy to create a component for UI.
-</h3>
+## MongoDB
 
----
+The Better Auth MongoDB adapter stores authentication records in MongoDB. DevCore also stores saved technology selections in the `userStacks` collection. The database name is `dev_core-user` unless you change `src/lib/server/mongodb.ts`.
 
-## II. What is the difference between Props and State?
+## Security
 
-###
-
-<h3 style="color:orange">The difference between Props and State is that, Props pass data and it can't change data. State store data and if needed it changes.</h3>
-
-<h3 style="color:orange">Props pass throw component and it can't effect UI, if State changes the UI also change.
-
-</h3>
-
-###
-
----
-
-## III. What does the `useState` hook do, and where did you use it in this project?
-
-<h3 style="color:orange">useState hook store some value in it. It also returen two value and  stored valu and one set function , which we can set the value to store it.</h3>
-
-<h3 style="color:orange">In this project when I add a stack , I stor it in state. so, when I need the stack data I can get it from useState value.
-
-## </h3>
-
-## IV. What does the `useEffect` hook do, and why did you need it to load the JSON data?
-
-<h3 style="color:orange">useEffect hook does some sideeffect , means it fetch data , it connectin eith localstroage. When we need some outside things in react we used useEffect.</h3>
-
-<h3 style="color:orange">I need it to use for localstroag.So,when i set a stack affter set a new stack i have a side effect.
-
-## </h3>
-
-## V. Why does every item in a `.map()` list need a unique `key` prop?
-
-<h3 style="color:orange">Every item in a `.map()` list need a unique key prop because react need  to indentify every list . So , if it does not  have uniqe key , react warinig us.
-</h3>
-
-## VI. What is Conditional Rendering?
-
-<h3 style="color:orange">Conditional reandering is  to render UI based on some condition. So, some times  we need render some component based on conditon ,like if isAdded true change the button color gray or disabled is not it show its normal color.
-</h3>
-
-## VII. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
-
- <h3 style="color:orange">I padd data from a parent component to a child component by passing props .</h3>
-
-<h3 style="color:orange">And a child send something back to the parent it does't work like reveres , means we can't pass props child to parents.
-React is uni direction its always go parent to child, so if we need to pass someting from child to parents we do props lifting , means we set a state or hooks to the parent ,but passing reletive props to the child and then child use the set Metohd to set something then this value can use to parents .
-
-</h3>
-
-<br>
-<br>
-## 🌐 Live Demo
-
-🔗 **Live Website:** https://dev-stack-pi.vercel.app
+The original uploaded project contained credentials in an environment file. Those credentials should be rotated before production use if they were ever committed, uploaded, or exposed.

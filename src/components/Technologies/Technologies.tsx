@@ -1,137 +1,58 @@
-import { Suspense, useEffect, useState } from "react";
-import Technologie from "../Technologie/Technologie";
-import type { Technologiese } from "../../type/type";
-import { Slide, toast } from "react-toastify";
+import { useTech } from "../../context/TechProvider";
+
 import Loader from "../Loader/Loader";
-const fetchTechnologies = async (): Promise<Technologiese[]> => {
-  const res = await fetch("/data.json");
-  const data = await res.json();
-  return data;
-};
+import Technologie from "../Technologie/Technologie";
 
 export default function Technologies() {
-  const [teachnologiesData] = useState(() => fetchTechnologies());
-  const [stack, setStack] = useState<Technologiese[]>(() => {
-    const savedStack = localStorage.getItem("technologyStack");
+  const { loading, categories } = useTech();
 
-    if (!savedStack) {
-      return [];
-    }
-
-    return JSON.parse(savedStack) as Technologiese[];
-  });
-
-  const addToStack = (technology: Technologiese) => {
-    const alreadyExists = stack.some((item) => item.id === technology.id);
-
-    if (alreadyExists) {
-      toast.warning(`${technology.name} is already in your stack!`, {
-        position: "bottom-right",
-        autoClose: 3000,
-        theme: "dark",
-        transition: Slide,
-        style: {
-          background: "linear-gradient(135deg, #6366f1 50% ,#45caff 100%)",
-          color: "#FFFFFF",
-        },
-      });
-
-      return;
-    }
-
-    setStack((prev) => {
-      if (prev.some((item) => item.id === technology.id)) {
-        return prev;
-      }
-
-      return [...prev, technology];
-    });
-
-    toast.success(`${technology.name} Added successfully`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Slide,
-
-      style: {
-        background: "linear-gradient(135deg,#273596, #45caff)",
-        color: "#FFFFFF",
-      },
-    });
-  };
-
-  useEffect(() => {
-    localStorage.setItem("technologyStack", JSON.stringify(stack));
-  }, [stack]);
-
-  const removeFromStack = (id: Technologiese["id"]) => {
-    setStack((prev) => prev.filter((item) => item.id !== id));
-
-    const removeItem = stack.find((remove) => remove.id === id);
-
-    toast.success(
-      ` ${removeItem ? removeItem.name : "Can't find"} Remove successfully`,
-      {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Slide,
-
-        style: {
-          background: "linear-gradient(135deg, #ff1b6b, #45caff)",
-          color: "#ffffff",
-        },
-      },
+  if (loading) {
+    return (
+      <section id="technologies" className="contain-width py-24">
+        <div className="flex justify-center py-20">
+          <Loader />
+        </div>
+      </section>
     );
-  };
-
-  const allRemoveFromStack = () => {
-    setStack([]);
-    toast.success(` Remove All successfully`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Slide,
-
-      style: {
-        background: "linear-gradient(135deg, #ff1b6b, #45caff )",
-        color: "#ffffff",
-      },
-    });
-  };
+  }
 
   return (
-    <div>
-      <Suspense
-        fallback={
-          <div className="flex justify-center mb-80">
-            <Loader />
+    <section
+      id="technologies"
+      className="relative border-y border-slate-100 bg-white py-20 sm:py-28"
+    >
+      <div className="absolute left-0 top-20 h-64 w-64 rounded-full bg-violet-100/70 blur-3xl" />
+      <div className="absolute right-0 bottom-10 h-72 w-72 rounded-full bg-pink-100/70 blur-3xl" />
+
+      <div className="contain-width relative">
+        <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+          <div>
+            <div className="mb-3 inline-flex rounded-full bg-violet-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-violet-600">
+              Explore the ecosystem
+            </div>
+            <h2 className="font-jakarta text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+              Explore the{" "}
+              <span className="brand-gradient-text">Technologies</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
+              Pick technologies by category and build a stack that matches your
+              development workflow.
+            </p>
           </div>
-        }
-      >
-        <Technologie
-          teachnologiesData={teachnologiesData}
-          stack={stack}
-          addToStack={addToStack}
-          removeFromStack={removeFromStack}
-          allRemoveFromStack={allRemoveFromStack}
-        />
-      </Suspense>
-    </div>
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <span
+                key={category}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <Technologie />
+      </div>
+    </section>
   );
 }

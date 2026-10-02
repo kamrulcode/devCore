@@ -1,9 +1,9 @@
-import "../Loader/Loader.css";
 export default function Loader() {
   return (
-    <div className="loader">
-      <div className="loader_cube loader_cube--color"></div>
-      <div className="loader_cube loader_cube--glowing"></div>
+    <div className="flex items-center gap-2" role="status" aria-label="Loading">
+      <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-pink-500 [animation-delay:-.2s]" />
+      <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-violet-500 [animation-delay:-.1s]" />
+      <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-blue-500" />
     </div>
   );
 }

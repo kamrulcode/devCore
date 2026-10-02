@@ -1,77 +1,38 @@
-import { Eye, EyeSlash } from "@gravity-ui/icons";
-import {
-  Button,
-  FieldError,
-  InputGroup,
-  Label,
-  TextField,
-} from "@heroui/react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useState } from "react";
 
-export function PasswordWithToggle() {
-  const [isVisible, setIsVisible] = useState(false);
+interface Props {
+  name?: string;
+}
+
+export function PasswordWithToggle({ name = "password" }: Props) {
+  const [visible, setVisible] = useState(false);
 
   return (
-    <TextField
-      className="w-full"
-      isRequired
-      minLength={8}
-      name="password"
-      type="password"
-      validate={(value) => {
-        if (value.length < 8) {
-          return "Password must be at least 8 characters";
-        }
-        if (!/[A-Z]/.test(value)) {
-          return "Password must contain at least one uppercase letter";
-        }
-        if (!/[0-9]/.test(value)) {
-          return "Password must contain at least one number";
-        }
-
-        return null;
-      }}
-    >
-      <Label className="mb-2 block text-sm font-medium text-[#172554]">
-        Password
-      </Label>
-      <InputGroup
-        className="h-11
-            w-full
-            rounded-xl
-            border
-            border-gray-200
-            bg-white
-            px-3
-            text-sm
-            text-[#172554]
-            shadow-sm
-            outline-none
-            transition
-            placeholder:text-gray-400
-            focus:border-[#f34b7c]
-            focus:ring-2
-            focus:ring-[#f34b7c]/10"
-      >
-        <InputGroup.Input type={isVisible ? "text" : "password"} />
-
-        <InputGroup.Suffix className="pe-0">
-          <Button
-            isIconOnly
-            aria-label={isVisible ? "Hide password" : "Show password"}
-            size="sm"
-            variant="ghost"
-            onPress={() => setIsVisible(!isVisible)}
-          >
-            {isVisible ? (
-              <Eye className="size-4" />
-            ) : (
-              <EyeSlash className="size-4" />
-            )}
-          </Button>
-        </InputGroup.Suffix>
-      </InputGroup>
-      <FieldError className="mt-1 text-xs text-red-500" />
-    </TextField>
+    <div className="w-full">
+      <label htmlFor={name} className="mb-2 block text-sm font-semibold text-slate-800">
+        Password <span className="text-pink-500">*</span>
+      </label>
+      <div className="relative">
+        <input
+          id={name}
+          name={name}
+          required
+          minLength={8}
+          type={visible ? "text" : "password"}
+          placeholder="Create a strong password"
+          className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 pr-12 text-sm text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+        />
+        <button
+          type="button"
+          onClick={() => setVisible((value) => !value)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-slate-400 hover:bg-slate-50 hover:text-violet-600"
+          aria-label={visible ? "Hide password" : "Show password"}
+        >
+          {visible ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+        </button>
+      </div>
+      <p className="mt-1.5 text-xs text-slate-400">At least 8 characters.</p>
+    </div>
   );
 }
